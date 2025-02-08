@@ -29,9 +29,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+
 VOLUME /var/jenkins_home/node
 
-RUN curl -sO http://192.168.1.10:8080/jnlpJars/agent.jar
-
-# Set the entrypoint to run the Jenkins agent with the specified parameters
-ENTRYPOINT ["java", "-jar", "agent.jar", "-url", "http://192.168.1.10:8080/", "-secret", "cff2c963ff7e13ea4f925b2ea4615ffa9e5cdbc518bad4f2dbb93488d77255d0", "-name", "docker-agent", "-webSocket", "-workDir", "/var/jenkins_home/node"]
+# Set the entrypoint to the Jenkins agent
+ENTRYPOINT ["jenkins-agent"]
