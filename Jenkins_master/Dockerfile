@@ -1,9 +1,9 @@
 # Use the official Jenkins LTS image as a base
-FROM jenkins/jenkins:2.492.1
+FROM jenkins/jenkins:2.479.3
 
 # Maintainer information
 LABEL maintainer="rajendra.daggubati1997@gmail.com" \
-      version="2.492.1" \
+      version="2.479.3" \
       description="Jenkins with Docker support" \
       org.opencontainers.image.source="https://github.com/Chowdary1997/Jenkins_jenkins_nodes_Dockerfle.git" \
       org.opencontainers.image.licenses="MIT"
@@ -21,6 +21,7 @@ RUN apt-get update && \
     gnupg2 \
     lynis \
     colorized-logs \
+    openjdk-21-jdk \
     software-properties-common && \
     curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
     echo "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list && \
