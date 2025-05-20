@@ -28,10 +28,7 @@ RUN apt-get update && \
     apt-get install -y docker-ce docker-ce-cli containerd.io && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+RUN usermod -aG docker jenkins
+RUN systemctl restart docker
 
-VOLUME /var/jenkins_home/node
 
-RUN curl -sO http://192.168.1.11:8080/jnlpJars/agent.jar
-
-# Set the entrypoint to run the Jenkins agent with the specified parameters
-ENTRYPOINT ["java", "-jar", "agent.jar", "-url", "http://192.168.1.11:8080/", "-secret", "02ea09f80880903a7e4f441fe8adf89b38006802196881715f02dfdfa2fa3a24", "-name", "docker", "-webSocket", "-workDir", "/var/jenkins_home/node"]
