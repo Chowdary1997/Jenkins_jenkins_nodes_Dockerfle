@@ -1,0 +1,4 @@
+docker network create   --driver bridge   --subnet 10.0.0.0/24   --gateway 10.0.0.1   raja_priv
+docker network ls
+docker run -dit   --name nginx   --network bridge   -p 80:80   -v ~/Rajendra/nginx-conf/nginx.conf:/etc/nginx/nginx.conf:ro   nginx
+docker network connect raja_priv nginx
